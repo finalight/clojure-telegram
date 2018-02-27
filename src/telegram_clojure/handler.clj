@@ -32,12 +32,14 @@
          (throw (Error. (format "Could not load configuration file: %s" (.getCanonicalPath file))))))))
 
 ; (prn ((env :telegram-api-key))
-(def token (get (read-env-file) "TELEGRAM_API_KEY"))
+; (def token (get (read-env-file) "TELEGRAM_API_KEY"))
+(def token (System/getenv "TELEGRAM_API_KEY"))
+(def bot-url (System/getenv "BOT_URL"))
 (def api-url (str "https://api.telegram.org/bot" token "/"))
 
 (defn set-webhook []
   ; (println "token is " token)
-  (client/get (str api-url "setWebhook?url=https://ff983209.ngrok.io"))
+  (client/get (str api-url "setWebhook?url=" bot-url))
   (println "assume it's connected"))
 
 (defn get-webhook []
