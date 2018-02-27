@@ -69,7 +69,7 @@
     (route/not-found "Not Found")))
 
 
-(def haaha (set-webhook))
+(def init (set-webhook))
 (def app
   (wrap-json-body app-routes api-defaults)
   )
